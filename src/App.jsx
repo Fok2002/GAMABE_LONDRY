@@ -19,11 +19,14 @@ export default function App() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -72,14 +75,25 @@ export default function App() {
           </div>
         </div>
 
-        <nav className="main-nav" aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#promo">Promo</a>
-          <a href="#contact">Contact</a>
+        <nav className={`main-nav ${isMenuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
+          <a href="#home" onClick={closeMenu}>Home</a>
+          <a href="#services" onClick={closeMenu}>Services</a>
+          <a href="#promo" onClick={closeMenu}>Promo</a>
+          <a href="#contact" onClick={closeMenu}>Contact</a>
         </nav>
 
         <a className="nav-button" href="#contact">Book now</a>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
 
       <main id="home">

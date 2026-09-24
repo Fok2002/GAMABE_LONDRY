@@ -126,6 +126,25 @@ textarea {
   font-weight: 600;
 }
 
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  padding: 9px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--green-50);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  margin: 4px 0;
+  border-radius: 2px;
+  background: var(--green-800);
+}
+
 .nav-button,
 .primary-btn,
 .promo-btn {
@@ -624,10 +643,6 @@ main {
   .service-grid {
     grid-template-columns: 1fr;
   }
-
-  .main-nav {
-    display: none;
-  }
 }
 
 @media (max-width: 640px) {
@@ -646,10 +661,44 @@ main {
 
   .site-header {
     flex-wrap: wrap;
+    position: relative;
   }
 
   .nav-button {
-    width: 100%;
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 8px);
+    left: 18px;
+    right: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px;
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: 0 14px 30px var(--shadow);
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  .main-nav a {
+    padding: 13px 12px;
+    border-radius: 10px;
+  }
+
+  .main-nav a:hover {
+    background: var(--green-100);
   }
 
   .hero {
